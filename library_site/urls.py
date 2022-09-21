@@ -16,8 +16,12 @@ Including another URLconf
 from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
+from . import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('api/', include('library_app.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns.append(path('admin/', admin.site.urls))
+    
